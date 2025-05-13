@@ -5,9 +5,11 @@ exports.userSignupValidator = [
         .not()
         .isEmpty()
         .withMessage('Name is required'),
+    
     check('email')
         .isEmail()
         .withMessage('Must be a valid email address'),
+   
     check('mobile')
         .isLength({ min: 10 })
         .withMessage('Invalid mobile number')
