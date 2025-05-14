@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
-
 const employeeSchema = new mongoose.Schema(
     {
         employee_name: {
