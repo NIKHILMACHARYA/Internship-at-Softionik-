@@ -14,9 +14,11 @@ const path = require('path');
 
 var test=require('./models/testModel');
 var employee=require('./models/employeeModel');
+var student=require('./models/studentModel');
 
 // bring routes
 const testRoute=require('./routes/testRouter');
+const studentRoute=require('./routes/studentRouter');
 
 // app
 const app = express();
@@ -50,7 +52,7 @@ app.use('/public', express.static('public'));
 // routes middleware
 
 app.use('/api',testRoute);
-
+app.use('/api', studentRoute);
 
 // port
 const port = process.env.PORT || 3243;
