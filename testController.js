@@ -78,9 +78,28 @@ exports.employee_list = function (req, res) {
         }
         res.json({ employee_list: list, error: false });
       }
-    });
-  
-  
+    }); 
   };
 
 
+exports.employee_update=async function(req,res){
+
+    if (!req.body.empid) {
+        return res.status(400).json({
+            error: 'Missing admin user id'
+        });
+    } else {
+        var query = {
+            employee_name: req.body.employee_name,
+            employee_email:req.body.employee_email,
+            employee_password:req.body.employee_password,
+           
+        }
+
+        await employee.findOneAndUpdate({ _id: req.body.empid }, query);
+
+        res.json({
+            message: "Updated successfully"
+        });
+    }
+}
