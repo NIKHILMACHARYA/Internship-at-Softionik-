@@ -1,0 +1,5 @@
+Install node.js to your pc
+and install node modules to the project file with the command 
+> nmp i
+> npm start 
+npm start command is used to connect the database.
