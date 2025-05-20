@@ -1,4 +1,3 @@
-
 const express = require('express');
 const morgan = require('morgan');
 var mongooses = require('mongoose');
@@ -16,11 +15,15 @@ var test=require('./models/testModel');
 var employee=require('./models/employeeModel');
 var student=require('./models/studentModel');
 var country=require('./models/countryModel');
+var state=require('./models/stateModel');
+var city=require('./models/cityModel');
 
 // bring routes
 const testRoute=require('./routes/testRouter');
 const studentRoute=require('./routes/studentRouter');
 const countryRoute=require('./routes/countryRouter');
+const stateRoute=require('./routes/stateRouter')
+const cityRoute=require('./routes/cityRouter')
 // app
 const app = express();
 
@@ -55,6 +58,8 @@ app.use('/public', express.static('public'));
 app.use('/api',testRoute);
 app.use('/api', studentRoute);
 app.use('/api', countryRoute);
+app.use('/api', stateRoute);
+app.use('/api', cityRoute);
 
 // port
 const port = process.env.PORT || 3243;
