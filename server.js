@@ -13,17 +13,24 @@ const path = require('path');
 
 var test=require('./models/testModel');
 var employee=require('./models/employeeModel');
-var student=require('./models/studentModel');
-var country=require('./models/countryModel');
-var state=require('./models/stateModel');
-var city=require('./models/cityModel');
+var student = require('./models/studentModel');
+var country = require('./models/countryModel');
+var state = require('./models/stateModel');
+var city = require('./models/cityModel');
+var admin = require('./models/adminModel');
+var image = require('./models/imageModel');
+
 
 // bring routes
 const testRoute=require('./routes/testRouter');
-const studentRoute=require('./routes/studentRouter');
-const countryRoute=require('./routes/countryRouter');
-const stateRoute=require('./routes/stateRouter')
-const cityRoute=require('./routes/cityRouter')
+const studentRoute = require('./routes/studentRouter');
+const countryRoute = require('./routes/countryRouter');
+const stateRoute = require('./routes/stateRouter');
+const cityRoute = require('./routes/cityRouter');
+const adminRoute = require('./routes/adminRouter');
+const imageRoute = require('./routes/imageRouter');
+
+
 // app
 const app = express();
 
@@ -60,6 +67,9 @@ app.use('/api', studentRoute);
 app.use('/api', countryRoute);
 app.use('/api', stateRoute);
 app.use('/api', cityRoute);
+app.use('/api', adminRoute);
+app.use('/api', imageRoute);
+
 
 // port
 const port = process.env.PORT || 3243;
