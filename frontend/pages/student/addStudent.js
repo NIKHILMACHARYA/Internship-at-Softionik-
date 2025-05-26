@@ -23,7 +23,7 @@ const StudentAdd = () => {
         student_name:'',
         student_email:'',
         student_usn:'',
-        student_branch:''
+        student_branch:'',
     });
 
     const [msg, setmsg] = useState('');
@@ -93,9 +93,9 @@ const StudentAdd = () => {
                                         <label>Add Student</label>
                                     </div>
                                     <form role="form" onSubmit={handleSubmit} >
+                                        
                                         <div className="form-group">
                                             <label htmlFor="text">Student Name</label>
-
                                             <input type="text" className="form-control" placeholder="Student Name" id="student_name" name="student_name" onChange={handleChange('student_name')} required />
                                         </div>
 
@@ -105,9 +105,13 @@ const StudentAdd = () => {
                                         </div>
 
                                         <div className="form-group">
-                                            <label htmlFor="text">Password</label>
+                                            <label htmlFor="text">Student USN</label>
+                                            <input type="text" className="form-control" placeholder="USN" id="student_usn" name="student_usn" onChange={handleChange('student_usn')} required />
+                                        </div>
 
-                                            <input type="password" className="form-control" placeholder="Password" id="employee_password" name="employee_password" onChange={handleChange('employee_password')} required />
+                                        <div className="form-group">
+                                            <label htmlFor="text">Branch</label>
+                                            <input type="text" className="form-control" placeholder="Branch" id="student_branch" name="student_branch" onChange={handleChange('student_branch')} required />
                                         </div>
 
                                         <br></br><br></br>
@@ -127,4 +131,4 @@ const StudentAdd = () => {
     );
 
 };
-export default EmployeeAdd;
+export default StudentAdd;
