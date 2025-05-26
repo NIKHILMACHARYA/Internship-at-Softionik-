@@ -8,7 +8,7 @@ import Cookies from 'universal-cookie';
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import Sidebar from '../sidebar';
 import Topbar from '../topbar';
-import { DeleteEmployeeDetails, student_list } from '../../actions/studentAction';
+import { DeleteStd, student_list } from '../../actions/studentAction';
 
 const cookies = new Cookies();
 
@@ -37,50 +37,53 @@ const StudentView = () => {
         })
     }
 
-    // function edit(cell, row) {
-    //     //alert(JSON.stringify(row));
-    //     const handleClick = e => {
-    //         Router.push({
-    //             pathname: '/patient/editPatient',
-    //             query: {
-    //                 _id: row._id,
+    function edit(cell, row) {
+        //alert(JSON.stringify(row));
+        const handleClick = e => {
+            Router.push({
+                pathname: '/student/editStudent',
+                query: {
+                    _id: row._id,
 
-    //             }
-    //         })
-    //     };
-    //     return (
-    //         <span>
-    //             <button type="submit" class="btn btn-icon waves-effect waves-light btn-info" onClick={handleClick}> <i class="fe-edit"></i> </button>
-    //         </span>
-    //     )
-    // }
-    // function deleteChap(cell, row) {
-    //     let created_by_id = localStorage.getItem('id');
-    //     const handleClick = e => {
-    //         Swal.fire({
-    //             title: 'Are you sure?',
-    //             text: '',
-    //             icon: 'question',
-    //             allowOutsideClick: false,
-    //             confirmButtonText: 'Ok',
-    //             showCancelButton: true,
+                }
+            })
+        };
+        return (
+            <span>
+                <button type="submit" class="btn btn-icon waves-effect waves-light btn-info" onClick={handleClick}> <i class="fe-edit"></i> </button>
+            </span>
+        )
+    }
 
-    //         }).then((result) => {
-    //             if (result.isConfirmed) {
-    //                 let query = { "_id": row._id, "created_by_id": created_by_id }
-    //                 DeleteEmployeeDetails(query).then(data => {
-    //                     loadEmployeeDetails();
-    //                 });
-    //             }
-    //         })
-    //     };
+    
+    function DeleteStd(cell, row) {
+        // let created_by_id = localStorage.getItem('id');
+        const handleClick = e => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: '',
+                icon: 'question',
+                allowOutsideClick: false,
+                confirmButtonText: 'Ok',
+                showCancelButton: true,
 
-    //     return (
-    //         <span>
-    //             <button type="submit" class="btn btn-icon waves-effect waves-light btn-danger" onClick={handleClick}> <i class="fa fa-times"></i> </button>
-    //         </span>
-    //     )
-    // }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let query = { "std_id": row._id}
+                    DeleteStd(query).then(data => {
+                        loadEmployeeDetails();
+                    });
+                }
+            })
+        };
+
+        return (
+            <span>
+                <button type="submit" class="btn btn-icon waves-effect waves-light btn-danger" onClick={handleClick}> <i class="fa fa-times"></i> </button>
+            </span>
+        )
+    }
+
     const cellEditProp = {
         mode: 'click',
         afterSaveCell: updateCell
@@ -139,8 +142,8 @@ const StudentView = () => {
                                         <TableHeaderColumn width='150px' dataField='student_email' dataAlign="center" editable={false} dataSort>Email Address</TableHeaderColumn>
                                         <TableHeaderColumn width='150px' dataField='student_usn' dataAlign="center" editable={false} dataSort>USN</TableHeaderColumn>
                                         <TableHeaderColumn width='150px' dataField='student_branch' dataAlign="center" editable={false} dataSort>Branch</TableHeaderColumn>
-                                        {/* <TableHeaderColumn width='80px' dataField='_id' dataAlign="center" editable={false} dataFormat={edit}>Edit</TableHeaderColumn> */}
-                                        {/* <TableHeaderColumn width='80px' dataField='_id' dataAlign="center" editable={false} dataFormat={deleteChap}>Delete</TableHeaderColumn> */}
+                                        <TableHeaderColumn width='80px' dataField='_id' dataAlign="center" editable={false} dataFormat={edit}>Edit</TableHeaderColumn>
+                                        <TableHeaderColumn width='80px' dataField='_id' dataAlign="center" editable={false} dataFormat={DeleteStd}>Delete</TableHeaderColumn>
                                     </BootstrapTable>
                                 </div>
                             </div>
