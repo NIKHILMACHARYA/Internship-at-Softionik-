@@ -19,14 +19,14 @@ export const employee_list = () => {
 };
 
 
-export const add_employee = patient => {
+export const add_employee = emp => {
     return fetch(`${API}/add_employee`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(patient)
+        body: JSON.stringify(emp)
     })
         .then(response => {
             return response.json();
@@ -34,9 +34,42 @@ export const add_employee = patient => {
         .catch(err => console.log(err));
 };
 
+export const employeeListById = (employee_id) => {
+    // alert(guardian_id)
+    let data = {
+        'empid' :employee_id
+    };
+    return fetch(`${API}/employee_list_byid`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
 
-export const DeletePatientDetail = (query) => {
-    return fetch(`${API}/patientdetail_delete`, {
+export const edit_employee = emp => {
+    return fetch(`${API}/employee_update`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(emp)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+export const DeleteEmp = (query) => {
+    return fetch(`${API}/employee_delete`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
