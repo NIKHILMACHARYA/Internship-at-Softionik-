@@ -6,7 +6,6 @@ var mongoose = require('mongoose'),
     employee = mongoose.model('employee');
 var moment = require('moment');
 
-
 exports.add_data = function (req, res) {
 
     test.find({ email: req.body.email }, function (err, num) {
@@ -16,8 +15,8 @@ exports.add_data = function (req, res) {
                     return err;
                 }
             }
+        
         } else {
-
             var body = req.body;
             console.log(body)
             var new_task = new test({
