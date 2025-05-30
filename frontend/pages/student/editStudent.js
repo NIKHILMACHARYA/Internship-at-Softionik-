@@ -68,13 +68,11 @@ const StudentEdit = () => {
                     setValues({ ...values, loading: false })
                     Router.push(`/student/viewStudent`);
                 }, 1000);
-
             }
         });
     };
     const handleChange = name => e => {
         setValues({ ...values, [name]: e.target.value });
-        
     };
 
     return (
