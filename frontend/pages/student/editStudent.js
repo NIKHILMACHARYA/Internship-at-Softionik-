@@ -16,7 +16,6 @@ import { edit_student,student_list_byid } from '../../actions/studentAction';
 import axios from 'axios';
 import { API } from '../../config';
 
-
 const cookies = new Cookies();
 
 const StudentEdit = () => {
@@ -28,7 +27,6 @@ const StudentEdit = () => {
         student_usn:'',
         student_branch:'',
     });
-
 
     const [msg, setmsg] = useState('');
     const {student_name, student_email,student_usn, student_branch,loading} = values;
