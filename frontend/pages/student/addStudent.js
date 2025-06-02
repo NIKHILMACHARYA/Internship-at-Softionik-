@@ -15,7 +15,6 @@ import { add_student } from '../../actions/studentAction';
 import axios from 'axios';
 import { API } from '../../config';
 
-
 const cookies = new Cookies();
 
 const StudentAdd = () => {
