@@ -8,4 +8,6 @@ router.post('/state_update', stateController.state_update);
 router.post('/state_list_byid', stateController.state_list_byid);
 router.post('/state_delete', stateController.state_delete);
 
+router.post('/state_list_by_country_id', stateController.state_list_by_country_id);
+
 module.exports = router;
