@@ -81,10 +81,10 @@ const Topbar = () => {
   //   });
   // };
 
-  // const logout = () => {
-  //   localStorage.removeItem('id');
-  //   Router.push(`/login`);
-  // }
+  const logout = () => {
+    localStorage.removeItem('id');
+    Router.push(`/login`);
+   }
 
   const signupForm = () => {
     return (
@@ -118,11 +118,11 @@ const Topbar = () => {
                 <li className='notify-item'>profile</li>
               </ul> */}
             </li>
-            {/* <li className="dropdown notification-list">
+            <li className="dropdown notification-list">
               <a className="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                 <span className="ml-1" onClick={logout} style={{color:"black"}} >Logout  <i className="fe-log-out"></i></span>
               </a>
-            </li> */}
+            </li> 
           </ul>
 
           <div className="logo-box" style={{ backgroundColor: '#1891e0' }} >
