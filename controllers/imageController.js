@@ -25,6 +25,23 @@ exports.add_image = function (req, res) {
     });
 }
 
+exports.list_image = function (req, res) {
+    image.find({ deleted_status: false }, function (err, images) {
+        if (err) return res.status(400).json({ error: err });
+
+        const list = images.map((image, index) => ({
+            sno: index + 1,
+            _id: image._id,
+            image_name: image.image_name,
+            image_url: image.image_url
+            
+        }));
+
+        res.json({ image_list: list, error: false });
+    });
+};
+
+
 exports.edit_image=async function(req,res){
     if (!req.body.img_id) {
         return res.status(400).json({
