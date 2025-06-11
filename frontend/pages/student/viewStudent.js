@@ -10,6 +10,7 @@ import Sidebar from '../sidebar';
 import Topbar from '../topbar';
 import { DeleteStd, student_list } from '../../actions/studentAction';
 
+
 const cookies = new Cookies();
 
 const StudentView = () => {
