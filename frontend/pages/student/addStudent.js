@@ -29,12 +29,10 @@ const StudentAdd = () => {
     const {student_name, student_email,student_usn, student_branch,loading} = values;
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        
+        e.preventDefault()
         var student_data={student_name, student_email,student_usn, student_branch}
 
         add_student(student_data).then(res => {
-
             if (res.error) {
                 setValues({ ...values });
             } else {
@@ -51,7 +49,6 @@ const StudentAdd = () => {
     };
     const handleChange = name => e => {
         setValues({ ...values, [name]: e.target.value });
-        
     };
 
     return (
