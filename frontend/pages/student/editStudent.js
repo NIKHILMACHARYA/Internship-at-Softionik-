@@ -34,7 +34,7 @@ const StudentEdit = () => {
     useEffect(() => {
         loadStudentDetails();
     }, []);
-
+    
     const loadStudentDetails = () => {
         student_list_byid(student_id).then(data => {
                alert(JSON.stringify(data));
@@ -47,7 +47,6 @@ const StudentEdit = () => {
             }
         })
     }
-
 
     const handleSubmit = (e) => {
         e.preventDefault();
