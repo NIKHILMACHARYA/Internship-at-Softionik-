@@ -63,3 +63,25 @@ exports.login = function (req, res) {
         });
     });
 }  
+
+
+exports.admin_list = function (req, res) {
+    var list = []
+    admin.find({ deleted_status: false }, function (err, resp) {
+      if (err) {
+        return res.status(400).json({
+          error: err
+        });
+      } else {
+        for (var i = 0; i < resp.length; i++) {
+          list.push({
+            sno: i + 1,
+            _id: resp[i]._id,
+             user_name: resp[i].user_name,
+             password:resp[i].password
+          })
+        }
+        res.json({ admin_list: list, error: false });
+      }
+    });
+  };
