@@ -1,2 +1,2 @@
-add node modules in this location
-with  the help of command 'node server.js' to run the frontend...
+node modules placed in the frontend-adminpanel location only.
+not in this location !
