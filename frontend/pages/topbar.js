@@ -8,6 +8,7 @@ import $ from 'jquery';
 import Router from 'next/router';
 // import { getCookie } from '../actions/adminAction';
 import Cookies from 'universal-cookie';
+ 
 const cookies = new Cookies();
 
 const Topbar = () => {
@@ -30,6 +31,12 @@ const Topbar = () => {
   const { name, dname, dimage, image, admin, error, loading, message, showForm } = values;
 
   useEffect(() => {
+
+    const session_adminid=localStorage.getItem("admin_id")
+    if(session_adminid == "" || session_adminid == null || session_adminid == undefined){
+          Router.push(`/login`);
+    }
+
     $('.button-menu-mobile').on('click', function (event) {
       event.preventDefault();
       $('body').toggleClass('sidebar-enable');
@@ -82,9 +89,10 @@ const Topbar = () => {
   // };
 
   const logout = () => {
-    localStorage.removeItem('id');
+    cookies.remove('admin_id');
+    localStorage.removeItem('admin_id');
     Router.push(`/login`);
-   }
+  }
 
   const signupForm = () => {
     return (
@@ -120,9 +128,9 @@ const Topbar = () => {
             </li>
             <li className="dropdown notification-list">
               <a className="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <span className="ml-1" onClick={logout} style={{color:"black"}} >Logout  <i className="fe-log-out"></i></span>
+                <span className="ml-1" onClick={logout} style={{color:"red"}} >Logout  <i className="fe-log-out"></i></span>
               </a>
-            </li> 
+            </li>
           </ul>
 
           <div className="logo-box" style={{ backgroundColor: '#1891e0' }} >
@@ -131,7 +139,7 @@ const Topbar = () => {
                 {/* <Image src="/icons/app_logo.jpeg" width="181" height="50" alt=""/>
                 <!-- <span className="logo-lg-text-light">UBold</span> --> */}
                 {/* <img src="/images/logo.png" alt="" style={{marginTop:'15px'}} height="48"/> */}
-                <h1><label style={{color:"white",fontSize:"25px"}}>EMPLOYEE</label></h1>
+                <h1><label style={{color:"white",fontSize:"25px"}}>INTERNSHIP</label></h1>
               </span>
               <span className="logo-sm">
                 {/* <!-- <span className="logo-sm-text-dark">U</span> --> */}
@@ -156,9 +164,6 @@ const Topbar = () => {
     {signupForm()}
   </React.Fragment>
 };
-
-
-
 
 
 export default Topbar;
