@@ -2,7 +2,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import React,{Fragment} from 'react';
 import axios from 'axios';
- import { Adminsignin ,authenticate } from '../actions/adminAction';
+ import { login ,authenticate } from '../actions/adminAction';
+import Topbar from './topbar';
 
 import Head from 'next/head';
 import Cookies from 'universal-cookie';
@@ -12,43 +13,53 @@ const cookies = new Cookies();
 
 
 
+
 const AdminSignin = () => {
     const [values, setValues] = useState({
-        username: 'ryan',
-        password: 'rrrrrr',
+        username: '',
+        password: '',
         error: '',
         loading: false,
         message: '',
         showForm: true
     });
 
-    const { username, password, error, loading, message, showForm } = values;
+    const { user_name, password, error, loading, message, showForm } = values;
 
     const handleSubmit = e => {
         e.preventDefault();
+        
         setValues({ ...values, loading: false, error: false });
-        const admin = { username, password };
+        const admin = { user_name, password };
 
-
-        Adminsignin(admin).then(data => {
+        login(admin).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
             } else {
-                // alert(JSON.stringify(data))
-                localStorage.setItem('id', data.admin_id);
-                console.log("admin image", data.admin_image);
-                localStorage.setItem('admin_image', data.admin_image);
-
-                if(process.browser)
+                // alert(JSON.stringify(data.message))
+                if(data.message=="Login successful")
                 {
-                    cookies.set("admin_image",data.admin_image);
+                    // alert(data.data._id)
+                    localStorage.setItem('admin_id', data.data._id);
+                    Router.push(`/dashboard`);
+                }else
+                {
+                    alert("Invalid user name or password !");
                 }
+                // localStorage.setItem('id', data.admin_id);
+                // console.log("admin image", data.admin_image);
+                // localStorage.setItem('admin_image', data.admin_image);
+
+                // if(process.browser)
+                // {
+                //     cookies.set("admin_image",data.admin_image);
+                // }
                 // save user token to cookie
                 // save user info to localstorage
                 // authenticate user
-                authenticate(data, () => {
-                    Router.push(`/dashboard`);
-                });
+                // authenticate(data,() => {
+                //     Router.push(`/dashboard`);
+                // });
             }
         });
     };
@@ -63,7 +74,7 @@ const AdminSignin = () => {
 
     const signupForm = () => {
         return (
-            <div id="wrapper" style={{backgroundImage:`url("/images/lab_image.jpg")` ,width:"100vw",height:"100vh",backgroundSize:"cover",backgroundRepeat:"no-repeat" }}>
+            <div id="wrapper" style={{   width:"150vw",height:"150vh", backgroundSize:"cover",backgroundRepeat:"no-repeat" }}>
 
             <Head>
             <title>Login</title>
@@ -72,12 +83,13 @@ const AdminSignin = () => {
         <meta property="og:image" content="/icons/sm_m2b.png" />
         <meta itemProp="image" content="/icons/sm_m2b.png"></meta>
         <meta property="og:image:width" content="200" />
-<meta property="og:image:height" content="200" />
+        <meta property="og:image:height" content="200" />
             </Head>
-            
+            {/* <Topbar /> */}
+
             <div className='mr-5'>
             <div className="pt-4 mt-10">
-        <div className="container">
+            <div className="container">
             <div className="row justify-content-start mr-5">
             <div className="col-xl-6">
 
@@ -85,19 +97,21 @@ const AdminSignin = () => {
 
             <div className="card-body">
             <div className="text-center m-auto ">
-                            <Link href="/">
+                            {/* <Link href="/">
                             <span><Image src="/icons/app_logo.jpeg" width="150" height="150" alt=""/></span>
-                                </Link>
-                                <h5 class="text-uppercase text-center font-bold mt-2">Admin Signin</h5>
+                                </Link> */}
+                                {/* <h5 class="text-uppercase text-center font-bold mt-2"><b> User Login</b></h5> */}
 
                             </div>
-
+                                <div className="login-wrapper">
+                                  <div className="login-card">
+                                   <h2 className="login-title">Admin Login</h2>
                         
                                     <form onSubmit={handleSubmit} >
 
                                         <div className="form-group mb-3 mt-3">
-                                                <label htmlFor="text">Username</label>
-                                                <input className="form-control" type="text" id="username" placeholder="Enter your username" onChange={handleChange('username')} />
+                                                <label htmlFor="text">User name</label>
+                                                <input className="form-control" type="text" id="user_name" placeholder="Enter your username" onChange={handleChange('user_name')} />
                                         </div>
 
 
@@ -115,9 +129,15 @@ const AdminSignin = () => {
                                             </div>
 
                                         </div>
+                                        {loading ? (<div class="alert alert-success margin-top-10">Login Successfully</div>) : null}
 
                                     </form>
 
+                                   {error && <div className="login-alert alert alert-danger">{error}</div>}
+                                   {message && <div className="login-alert alert alert-info">{message}</div>}
+                                   {loading && <div className="login-alert alert alert-warning">Loading...</div>}
+                                 </div>
+                               </div>
 
                                 
                         </div>
@@ -129,6 +149,7 @@ const AdminSignin = () => {
 
                 </div>
             </div>
+            
         </div>
         </div>
         </div>
@@ -142,7 +163,7 @@ const AdminSignin = () => {
             {showError()}
             {showLoading()}
             {showMessage()}
-            { signupForm()}
+            {signupForm()}
         </React.Fragment>
     };
 
