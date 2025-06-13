@@ -205,6 +205,11 @@ class Sidebar extends Component {
                 <MenuItem icon={<GrDashboard />}><Link href='/dashboard'><a><span>Dashboard</span></a></Link></MenuItem>
                 <MenuItem icon={<BiUser />}><Link href="/employee/viewEmployee"><a><span>Employee</span></a></Link></MenuItem>
                 <MenuItem icon={<BiUser />}><Link href="/student/viewStudent"><a><span>Student</span></a></Link></MenuItem>
+                <MenuItem icon={<BiUser />}><Link href="/country/viewCountry"><a><span>Country</span></a></Link></MenuItem>
+                <MenuItem icon={<BiUser />}><Link href="/state/viewState"><a><span>State</span></a></Link></MenuItem>
+                <MenuItem icon={<BiUser />}><Link href="/city/viewCity"><a><span>City</span></a></Link></MenuItem>
+                <MenuItem icon={<BiUser />}><Link href="/image/viewImage"><a><span>Image</span></a></Link></MenuItem>
+
               </Menu>
             </ProSidebar>
           </Scrollbars>
